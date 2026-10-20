@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chúc mừng sinh nhật</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: system-ui,-apple-system,"Segoe UI",sans-serif;
+            background: linear-gradient(160deg,#fff4d6,#ffd9e4);
+            color: #4a2b3a;
+            text-align: center;
+            padding: 24px;
+            overflow: hidden;
+        }
+
+        .box {
+            max-width: 460px
+        }
+
+        .cake {
+            font-size: 4.5rem;
+            animation: bounce 1.6s ease-in-out infinite
+        }
+
+        @keyframes bounce {
+            50% {
+                transform: translateY(-12px)
+            }
+        }
+
+        h1 {
+            font-size: clamp(2rem,8vw,3rem);
+            margin: 12px 0 8px;
+            color: #e0457b
+        }
+
+        .name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 6px
+        }
+
+        .age {
+            font-size: 1.15rem;
+            color: #e0457b;
+            font-weight: 600;
+            margin-bottom: 16px
+        }
+
+        p {
+            line-height: 1.7;
+            font-size: 1.05rem
+        }
+
+        button {
+            margin-top: 24px;
+            padding: 12px 28px;
+            font-size: 1rem;
+            border: 0;
+            border-radius: 999px;
+            background: #e0457b;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(224,69,123,.4);
+        }
+
+            button:active {
+                transform: scale(.97)
+            }
+
+        .balloon {
+            position: fixed;
+            bottom: -80px;
+            font-size: 2.4rem;
+            pointer-events: none;
+            animation: float linear forwards;
+        }
+
+        @keyframes float {
+            to {
+                transform: translateY(-120vh)
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="cake">🎂</div>
+        <h1>Chúc mừng sinh nhật!</h1>
+        <div class="name" id="name"></div>
+        <div class="age" id="age"></div>
+        <p>
+            Chúc bạn tuổi mới thật nhiều niềm vui, sức khỏe và may mắn.<br>
+            Mọi điều bạn mong ước đều sẽ thành hiện thực nhé! 🎉
+        </p>
+        <button onclick="party()">Thổi nến 🕯️</button>
+    </div>
+
+    <script>
+        // Sửa trực tiếp 2 dòng này, hoặc dùng đường dẫn: ?to=Lan&age=25
+        const NAME = 'Đnpw uiên';
+        const AGE  = 19;
+
+        const q = new URLSearchParams(location.search);
+        const to  = q.get('to')  || NAME;
+        const age = q.get('age') || AGE;
+        document.getElementById('name').textContent = to ? '💗 ' + to + ' 💗' : '';
+        document.getElementById('age').textContent  = age ? 'Tròn ' + age + ' tuổi 🎈' : '';
+
+        function party(){
+        const items = ['🎈','🎉','🎊','🎁','💖'];
+        for(let i=0;i<30;i++){
+        const b = document.createElement('div');
+        b.className = 'balloon';
+        b.textContent = items[Math.floor(Math.random()*items.length)];
+        b.style.left = Math.random()*95 + 'vw';
+        b.style.animationDuration = (3 + Math.random()*3) + 's';
+        b.style.animationDelay = (Math.random()*0.8) + 's';
+        document.body.appendChild(b);
+        setTimeout(()=>b.remove(), 7000);
+        }
+        }
+    </script>
+</body>
+</html>
